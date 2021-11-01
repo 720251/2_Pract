@@ -110,11 +110,15 @@ void EnvioDatos(void *pvParameters)
 
   for (;;)
   {
-    Serial.println("Valores de aceleración:");
-    Serial.println("X: " + String(sensor.accelX()));
-    Serial.println("Y: " + String(sensor.accelY()));
-    Serial.println("Z: " + String(sensor.accelZ()));
-    Serial.println("Aceleración: " + String(sensor.accelSqrt()));
+    Serial.print("X: ");
+    Serial.print(String(sensor.accelX()));
+    Serial.print(" Y: ");
+    Serial.print(String(sensor.accelY()));
+    Serial.print(" Z: ");
+    Serial.print(String(sensor.accelZ()));
+    Serial.print(" A: ");
+    Serial.print(String(sensor.accelSqrt()));
+    Serial.println();
     vTaskDelay(1000 / portTICK_RATE_MS);
   }
 }
