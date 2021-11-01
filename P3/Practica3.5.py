@@ -1,9 +1,14 @@
 import serial
 import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
+import matplotlib.animation as animation
 
 PuertoSerie = serial.Serial('COM4', baudrate=115200, timeout=1.0)
 signal = {'X' : [], 'Y' : [], 'Z' : [], 'A' : []}
 contador = 0
+fig = plt.figure()
+ax1 = fig.add_subplot(111,projection='3d')
 
 while True:
 
@@ -31,6 +36,9 @@ while True:
                 stdZ = np.std(signal['Z'])
                 meanA = np.mean(signal['A'])
                 stdA = np.std(signal['A'])
+                ax1.scatter(meanX, meanY, meanZ, c='g', marker='o')
+                ax1.scatter(stdX, stdY, stdZ, c='r', marker = 'o')
+                plt.show()
         else:
             contador = 0;
             signal['X'].clear()
@@ -41,9 +49,11 @@ while True:
 
         
     except KeyboardInterrupt:
+        PuertoSerie.close()
         break
     
-PuertoSerie.close()
+
+
 
 
 
