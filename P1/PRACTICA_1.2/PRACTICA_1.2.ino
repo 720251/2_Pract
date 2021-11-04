@@ -16,7 +16,7 @@ void setup() {
   Serial.begin(115200);
   timer = timerBegin(0, 80, true);
   timerAttachInterrupt(timer, &onTimer, true);
-  timerAlarmWrite(timer, 1000000, true);
+  timerAlarmWrite(timer, 10000000, true);
   timerAlarmEnable(timer);
 }
 
@@ -33,11 +33,8 @@ void loop() {
     portEXIT_CRITICAL(&timerMux);
     //Serial.println(totalInterruptCounter);
     totalInterruptCounter++;
-    if (totalInterruptCounter == 10) {
-      valADC = leePot();
-      Serial.println(valADC);
-      totalInterruptCounter = 0;
-    }
+    valADC = leePot();
+    Serial.println(valADC);
   }
 
 }
