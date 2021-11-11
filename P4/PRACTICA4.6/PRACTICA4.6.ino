@@ -17,40 +17,56 @@ AsyncWebServer server(80);
 const char* ssid       = "vodafoneBA1157";
 const char* password   = "SRULAGD6RHFQ4M5K";
 
-String printLocalTime()
-{
-  struct tm timeinfo;
-  if (!getLocalTime(&timeinfo)) {
-    Serial.println("Hora no obtenida");
-  }
-  String Hora = String(timeinfo.tm_hour) + ":" + String(timeinfo.tm_min) + ":" + String(timeinfo.tm_sec);
-  return (Hora);
-}
+struct tm timeinfo;
+int h, m, s, h_reset = 0, m_reset = 0, s_reset = 0; //Hora, minuto y segundo
+String hora_S;
 
-String printResetTime()
-{
-  struct tm timeinfo;
-  if (!getLocalTime(&timeinfo)) {
-    Serial.println("Hora no obtenida");
-  }
-  timeinfo.tm_hour = 00;
-  timeinfo.tm_min = 00;
-  timeinfo.tm_sec = 00;
-  String Hora = String(timeinfo.tm_hour) + ":" + String(timeinfo.tm_min) + ":" + String(timeinfo.tm_sec);
-  return (Hora);
-}
+bool flag;
 
-String proceso(const String& var)
-{
+String proceso(const String& var) {
   Serial.println(var);
-  if (var == "HORA")
-  {
-    return printLocalTime();
+  if (var == "STATE" || var == "RESET") {
+    getLocalTime(&timeinfo);
+    h = timeinfo.tm_hour;
+    m = timeinfo.tm_min;
+    s = timeinfo.tm_sec;
+
+    if (flag) { //PULSAMOS RESET
+      h_reset = h;
+      m_reset = m;
+      s_reset = s;
+      flag = false;
+    }
+    //Hora mostrada
+    h = h - h_reset;
+    m = m - m_reset;
+    s = s - s_reset;
+    if (s < 0) {
+      s = s + 60;
+      m = m - 1;
+    }
+
+    if (s < 10) { //Para añadir 0 a la izquierda
+      hora_S = String(":0" + String(s));
+    }
+    else {
+      hora_S = String(":" + String(s));
+    }
+    if (m < 10) {
+      hora_S = String(":0" + String(m) + hora_S);
+    }
+    else {
+      hora_S = String(":" + String(m) + hora_S);
+    }
+    if (h < 10) {
+      hora_S = String("0" + String(h) + hora_S);
+    }
+    else {
+      hora_S = String(String(h) + hora_S);
+    }
+    return hora_S;
   }
-  else if (var == "RESET")
-  {
-    return printResetTime();
-  }
+  return String();
 }
 
 
@@ -85,16 +101,10 @@ void setup() {
   server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(SPIFFS, "/style.css", "text/css");
   });
-  // Route to set GPIO to HIGH
-  server.on("/hora", HTTP_GET, [](AsyncWebServerRequest * request) {
-    //digitalWrite(ledPin, HIGH);
-    request->send(SPIFFS, "/index.html", String(), false, proceso);
-  });
-
   // Route to set GPIO to LOW
   server.on("/reset", HTTP_GET, [](AsyncWebServerRequest * request) {
-    //digitalWrite(ledPin, LOW);
     request->send(SPIFFS, "/index.html", String(), false, proceso);
+    flag = true;
   });
   // Start server
   server.begin();
