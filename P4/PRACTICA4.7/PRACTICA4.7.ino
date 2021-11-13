@@ -71,9 +71,6 @@ void setup() {
   timerAlarmWrite(timer, 10000000, true);
   timerAlarmEnable(timer);
 
-
-
-
   WiFi.mode(WIFI_STA);
   WiFi.setSleep(false); // Desactiva la suspensión de wifi en modo STA para mejorar la velocidad de respuesta
   WiFi.begin(ssid, password);
@@ -85,7 +82,6 @@ void setup() {
   Serial.println("Connected");
   Serial.print("IP Address:");
   Serial.println(WiFi.localIP());
-
 
   configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
 
@@ -106,6 +102,7 @@ void loop() {
     portENTER_CRITICAL(&timerMux);
     interruptCounter--;
     portEXIT_CRITICAL(&timerMux);
+    almacenaDatos();
     Serial.print("Fichero JSON: ");
     escribeFichero();
     Serial.println(datosChar);
