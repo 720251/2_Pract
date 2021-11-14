@@ -4,7 +4,7 @@
 const char* ssid       = "vodafoneBA1157";
 const char* password   = "SRULAGD6RHFQ4M5K";
 
-const IPAddress serverIP(192, 168, 0, 17); // La dirección que desea visitar
+const IPAddress serverIP(192, 168, 0, 13); // La dirección que desea visitar
 uint16_t serverPort = 1080;         // Número de puerto del servidor
 
 const char* ntpServer = "europe.pool.ntp.org";
