@@ -30,10 +30,10 @@ struct tm timeinfo;
 String hora;
 
 //FTP
-char ftp_server[] = "files.000webhost.com";
-char ftp_user[]   = "";
-char ftp_pass[]   = "";
-ESP32_FTPClient ftp (ftp_server, ftp_user, ftp_pass);
+char ftp_server[] = "155.210.150.77";
+char ftp_user[]   = "rsense";
+char ftp_pass[]   = "rsense";
+ESP32_FTPClient ftp (ftp_server,ftp_user,ftp_pass, 5000, 2);
 
 //JSON
 const int capacity = JSON_ARRAY_SIZE(100) + 100 * JSON_OBJECT_SIZE(4);
