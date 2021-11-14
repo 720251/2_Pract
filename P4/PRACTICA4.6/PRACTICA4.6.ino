@@ -3,8 +3,6 @@
 #include "SPIFFS.h"
 #include "time.h"
 
-const int ledPin = 12;
-
 WiFiClient client;
 
 const char* ntpServer = "europe.pool.ntp.org";
