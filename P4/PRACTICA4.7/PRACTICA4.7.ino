@@ -56,9 +56,9 @@ void escribeFichero() {
 
 void mandaFichero() {
   ftp.OpenConnection();
-  ftp.ChangeWorkDir("escribir directorio");
+  ftp.ChangeWorkDir("/rsense/720251");
   ftp.InitFile("Type A");
-  ftp.NewFile("dataTemp.json");
+  ftp.NewFile("720251_211119.json");
   ftp.Write(datosChar);
   ftp.CloseFile();
   ftp.CloseConnection();
@@ -92,7 +92,7 @@ void printLocalTime() {
     Serial.println("Hora no obtenida");
     return;
   }
-  Serial.println(&timeinfo, "%A, %d %B %Y %H:%M:%S");
+  //Serial.println(&timeinfo, "%A, %d %B %Y %H:%M:%S");
 }
 
 
