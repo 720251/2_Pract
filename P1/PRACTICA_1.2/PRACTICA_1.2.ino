@@ -34,7 +34,7 @@ void loop() {
     //Serial.println(totalInterruptCounter);
     totalInterruptCounter++;
     valADC = leePot();
+    Serial.print("Lectura potenciómetro: ");
     Serial.println(valADC);
   }
-
 }
