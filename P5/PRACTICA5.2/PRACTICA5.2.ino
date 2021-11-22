@@ -55,8 +55,6 @@ class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks
         {
           Serial.println("Beacon Encontrado");
           oBeacon.setData(strManufacturerData);
-          //Serial.printf("Estructura Beacon\n");
-          //Serial.printf("Major: %d Minor: %d UUID: %s Power: %d\n", ENDIAN_CHANGE_U16(oBeacon.getMajor()), ENDIAN_CHANGE_U16(oBeacon.getMinor()), oBeacon.getProximityUUID().toString().c_str(), oBeacon.getSignalPower());
           almacenaDatos();
           Serial.print("Fichero JSON: ");
           escribeFichero();
