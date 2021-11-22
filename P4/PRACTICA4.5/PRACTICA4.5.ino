@@ -36,7 +36,7 @@ void setup()
   timerAlarmWrite(timer, 1000, true);
   timerAlarmEnable(timer);
   WiFi.mode(WIFI_STA);
-  WiFi.setSleep(false); // Desactiva la suspensión de wifi en modo STA para mejorar la velocidad de respuesta
+  WiFi.setSleep(false);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED)
   {
