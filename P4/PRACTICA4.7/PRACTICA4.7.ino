@@ -58,7 +58,7 @@ void mandaFichero() {
   ftp.OpenConnection();
   ftp.ChangeWorkDir("/rsense/720251");
   ftp.InitFile("Type A");
-  ftp.NewFile("720251_211119.json");
+  ftp.NewFile("720251_211122.json");
   ftp.Write(datosChar);
   ftp.CloseFile();
   ftp.CloseConnection();
