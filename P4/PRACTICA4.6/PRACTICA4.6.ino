@@ -11,9 +11,12 @@ const int   daylightOffset_sec = 0;
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
+//
+//const char* ssid       = "vodafoneBA1157";
+//const char* password   = "SRULAGD6RHFQ4M5K";
 
-const char* ssid       = "vodafoneBA1157";
-const char* password   = "SRULAGD6RHFQ4M5K";
+const char* ssid       = "MiA2";
+const char* password   = "25208230t";
 
 struct tm timeinfo;
 int h, m, s, h_reset = 0, m_reset = 0, s_reset = 0; //Hora, minuto y segundo

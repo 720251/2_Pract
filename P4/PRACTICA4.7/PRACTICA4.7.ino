@@ -18,8 +18,11 @@ void IRAM_ATTR onTimer() {
 }
 
 //WIFI
-const char* ssid       = "vodafoneBA1157";
-const char* password   = "SRULAGD6RHFQ4M5K";
+//const char* ssid       = "vodafoneBA1157";
+//const char* password   = "SRULAGD6RHFQ4M5K";
+
+const char* ssid       = "MiA2";
+const char* password   = "25208230t";
 
 //MARCA TEMPORAL
 const char* ntpServer = "europe.pool.ntp.org";
