@@ -24,7 +24,7 @@ void setup() {
     ,  "Muestreo"
     ,  1024
     ,  NULL
-    ,  1
+    ,  3
     ,  NULL
     ,  ARDUINO_RUNNING_CORE);
 
@@ -42,7 +42,7 @@ void setup() {
     ,  "Led"
     ,  1024
     ,  NULL
-    ,  3
+    ,  1
     ,  NULL
     ,  ARDUINO_RUNNING_CORE);
 
